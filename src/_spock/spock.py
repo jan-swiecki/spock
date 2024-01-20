@@ -16,6 +16,7 @@ from _pytest.python import FunctionDefinition
 from _pytest.python import Metafunc
 from _pytest.python import Module
 from _pytest.python import PyCollector
+from _pytest.scope import Scope
 
 from .exceptions import UnableEvalParams
 from .helper import Box
@@ -133,6 +134,8 @@ def generate_spock_functions(
     fm = collector.session._fixturemanager
 
     definition = FunctionDefinition.from_parent(collector, name=name, callobj=obj)
+
+    # Remove?
     metafunc = Metafunc(definition, definition._fixtureinfo, collector.config, cls=cls, module=module)
 
     for idx, argument in enumerate(generate_arguments(where_block)):
@@ -176,15 +179,14 @@ def generate_spock_functions(
                 },
             )
 
-            callspec = CallSpec2(metafunc)
-            callspec.setmulti2(
-                {k: "params" for k in argnames},
-                argnames,
-                argument.values(),
-                id,
-                [],
-                4,
-                idx,
+            callspec = CallSpec2().setmulti(
+                valtypes={k: "params" for k in argnames},
+                argnames=argnames,
+                valset=argument.values(),
+                id=id,
+                marks=[],
+                scope=Scope.Package,
+                param_index=idx,
             )
 
             yield SpockFunction.from_parent(

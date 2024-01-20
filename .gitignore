@@ -1,3 +1,7 @@
+# Poetry
+/poetry.toml
+/.poetry-cache
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

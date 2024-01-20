@@ -28,17 +28,17 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-pytest = "^6.2.4"
+python = "^3.11"
+pytest = "^7.4.4"
 
-[tool.poetry.dev-dependencies]
-pytest-cov = "^2.12.1"
-pytest-sugar = "^0.9.4"
-commitizen = "^2.17.13"
-black = "^21.7b0"
-flake8 = "^3.9.2"
-isort = "^5.9.3"
-mypy = "^0.910"
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.1.0"
+pytest-sugar = "^0.9.7"
+commitizen = "^3.13.0"
+black = "^23.12.1"
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
 
 [tool.poetry.plugins.pytest11]
 spock = "_spock.plugin"
