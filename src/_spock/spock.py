@@ -110,8 +110,14 @@ class SpockFunction(Function):
             then_func = blocks.get("then")
             if then_func is None:
                 return
-            funcargs["excinfo"] = excinfo
             then_argnames = Code.from_function(then_func).getargs()
+
+            if excinfo is not None and 'excinfo' not in then_argnames:
+                # Raise exception raised from 'when' block if user is not injecting
+                # excinfo in 'then' block.
+                raise excinfo.value
+
+            funcargs["excinfo"] = excinfo
             then_args = {arg: funcargs[arg] for arg in then_argnames}
             then_func(**then_args)
 
