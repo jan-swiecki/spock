@@ -81,6 +81,11 @@ class SpockFunction(Function):
         testfunc = self.obj
         blocks = get_functions_in_function(testfunc)
 
+        if "expect" in blocks and "when" in blocks:
+            raise RuntimeError("Can't have both `expect` and `when` block. Allowed "
+                               "combinations are expect `[where] expect` or `[given] "
+                               "when then [where]`")
+
         if "expect" not in blocks and "then" not in blocks:
             raise RuntimeError("No `expect` or `then` block found")
 

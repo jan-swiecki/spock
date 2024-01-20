@@ -54,6 +54,13 @@ If you are using vscode, you can find there will be 3 test cases.
 
 ![vscode-test-discovery](doc/en/img/vscode-testing-discovery.png)
 
+## TODO Readme / code checking
+
+Allowed combinations
+* where + expect
+* given + when + then \[+ where]
+
+
 ## Installation
 
 ```bash
